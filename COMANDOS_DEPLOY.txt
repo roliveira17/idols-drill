@@ -1,0 +1,141 @@
+═══════════════════════════════════════════════════════════════════
+  COMANDOS PARA DEPLOY - IDOL'S DRILL
+  Copie e cole no terminal (Git Bash ou PowerShell)
+═══════════════════════════════════════════════════════════════════
+
+📋 PRÉ-REQUISITO:
+- Criar repositório no GitHub: https://github.com/new
+  Nome: idols-drill
+  NÃO marque "Add README"
+  Copie a URL do repositório
+
+═══════════════════════════════════════════════════════════════════
+PASSO 1: CONECTAR AO GITHUB
+═══════════════════════════════════════════════════════════════════
+
+# Navegar para o projeto
+cd /c/projetos/4idol/designapp
+
+# Adicionar remote (SUBSTITUA SEU-USUARIO)
+git remote add origin https://github.com/SEU-USUARIO/idols-drill.git
+
+# Verificar
+git remote -v
+
+# Push inicial
+git push -u origin main
+
+═══════════════════════════════════════════════════════════════════
+PASSO 2: DEPLOY NA VERCEL (ESCOLHA UMA OPÇÃO)
+═══════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────
+OPÇÃO A: Via Interface Web (RECOMENDADO - Mais Fácil)
+────────────────────────────────────────────────────────────────────
+
+1. Acesse: https://vercel.com/login
+2. Clique em "Add New..." → "Project"
+3. Selecione "idols-drill"
+4. Em "Environment Variables":
+   - Key: GROQ_API_KEY
+   - Value: sua_chave_groq
+   - Marque: Production, Preview, Development
+5. Clique em "Deploy"
+6. Aguarde ~2 minutos
+7. ✅ Pronto!
+
+────────────────────────────────────────────────────────────────────
+OPÇÃO B: Via Terminal (Avançado)
+────────────────────────────────────────────────────────────────────
+
+# Login na Vercel
+vercel login
+
+# Deploy preview
+vercel
+
+# Adicionar variável de ambiente
+vercel env add GROQ_API_KEY
+# Cole sua chave quando pedir
+# Selecione: Production, Preview, Development
+
+# Deploy para produção
+vercel --prod
+
+═══════════════════════════════════════════════════════════════════
+COMANDOS ÚTEIS PÓS-DEPLOY
+═══════════════════════════════════════════════════════════════════
+
+# Ver logs da aplicação
+vercel logs
+
+# Listar projetos
+vercel ls
+
+# Ver variáveis de ambiente
+vercel env ls
+
+# Abrir projeto no navegador
+vercel open
+
+# Ver domínios
+vercel domains ls
+
+# Fazer novo deploy
+git add .
+git commit -m "feat: nova funcionalidade"
+git push origin main
+# Vercel faz deploy automático!
+
+═══════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════
+
+❌ Erro: "remote origin already exists"
+→ git remote remove origin
+→ Depois adicione novamente
+
+❌ Erro: "permission denied" no push
+→ Use Personal Access Token ao invés de senha
+→ Criar em: https://github.com/settings/tokens
+
+❌ Build falhou na Vercel
+→ Verifique se GROQ_API_KEY está configurada
+→ Teste build local: npm run build
+
+❌ Chat não responde
+→ Verifique se a chave Groq está correta
+→ Teste em: https://console.groq.com
+
+❌ Git pede usuário/email
+→ git config --global user.name "Seu Nome"
+→ git config --global user.email "seu@email.com"
+
+═══════════════════════════════════════════════════════════════════
+CHECKLIST DE TESTE
+═══════════════════════════════════════════════════════════════════
+
+Depois do deploy, teste:
+□ Página inicial abre
+□ Seletor de idioma funciona
+□ Seletor de tom funciona
+□ Botão "Começar Exercício" funciona
+□ Chat carrega e envia mensagens
+□ Slider aparece ao eliminar ídolo
+□ Último ídolo é bloqueado
+□ Página de resultado exibe
+□ Mobile responsivo (teste no celular)
+
+═══════════════════════════════════════════════════════════════════
+RECURSOS
+═══════════════════════════════════════════════════════════════════
+
+📚 Guia completo: DEPLOY_GUIDE.md
+⚡ Guia rápido: DEPLOY_QUICK.md
+🔑 Chaves Groq: https://console.groq.com/keys
+🐙 GitHub: https://github.com
+🚀 Vercel: https://vercel.com
+
+═══════════════════════════════════════════════════════════════════
+  BOA SORTE! 🎉
+═══════════════════════════════════════════════════════════════════
