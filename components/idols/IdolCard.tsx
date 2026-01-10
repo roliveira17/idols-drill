@@ -33,15 +33,15 @@ export function IdolCard({ idol }: IdolCardProps) {
 
   return (
     <Card className={cn(
-      'relative transition-all duration-300',
-      idol.status === 'eliminated' && 'opacity-50 grayscale',
-      idol.status === 'active' && 'ring-2 ring-green-500/20'
+      'relative transition-all duration-300 border-2',
+      idol.status === 'eliminated' && 'opacity-60 border-red-200 dark:border-red-900',
+      idol.status === 'active' && 'border-green-200 dark:border-green-900 bg-green-50/50 dark:bg-green-950/20'
     )}>
       <CardHeader>
         <div className="flex items-start justify-between gap-2">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <span className="text-3xl">{IDOL_ICONS[idol.id]}</span>
-            <span>{idol.name}</span>
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <span className="text-2xl sm:text-3xl">{IDOL_ICONS[idol.id]}</span>
+            <span className="text-foreground">{idol.name}</span>
           </CardTitle>
           <Badge className={cn('shrink-0', config.color)}>
             <Icon className="h-3 w-3 mr-1" />
@@ -49,14 +49,14 @@ export function IdolCard({ idol }: IdolCardProps) {
           </Badge>
         </div>
 
-        <CardDescription className="mt-2 text-sm leading-relaxed">
+        <CardDescription className="mt-2 text-sm leading-relaxed text-foreground/80 dark:text-foreground/70">
           {idol.description}
         </CardDescription>
 
         {idol.status === 'eliminated' && idol.resistanceLevel && (
-          <div className="mt-3 pt-3 border-t">
-            <p className="text-xs text-muted-foreground">
-              Nível de resistência: {idol.resistanceLevel}/5
+          <div className="mt-3 pt-3 border-t border-border">
+            <p className="text-xs font-medium text-foreground/70">
+              Nível de resistência: <span className="text-primary font-bold">{idol.resistanceLevel}/5</span>
             </p>
           </div>
         )}
