@@ -41,18 +41,27 @@ export function IdolsView() {
           ))}
         </div>
 
-        <div className="mt-4 p-3 sm:p-4 bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-lg text-xs sm:text-sm">
-          <p className="font-semibold mb-2 text-foreground">Legenda:</p>
-          <ul className="space-y-2">
-            <li className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-green-500 shrink-0 ring-2 ring-green-200 dark:ring-green-800"></span>
-              <span className="text-foreground/90"><strong>Ativo</strong> - Ainda em consideração</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-red-500 shrink-0 ring-2 ring-red-200 dark:ring-red-800"></span>
-              <span className="text-foreground/90"><strong>Eliminado</strong> - Já foi descartado</span>
-            </li>
-          </ul>
+        <div className="mt-4 p-4 bg-card border-2 border-border rounded-lg shadow-sm">
+          <h3 className="text-sm font-bold mb-3 text-foreground flex items-center gap-2">
+            <span className="text-base">ℹ️</span>
+            Legenda
+          </h3>
+          <div className="space-y-3">
+            <div className="flex items-center gap-3 p-2 rounded bg-green-500/10 dark:bg-green-500/20 border border-green-500/30">
+              <div className="w-4 h-4 rounded-full bg-green-500 shrink-0 shadow-sm" />
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-foreground">Ativo</p>
+                <p className="text-xs text-foreground/70">Ainda em consideração</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-2 rounded bg-red-500/10 dark:bg-red-500/20 border border-red-500/30">
+              <div className="w-4 h-4 rounded-full bg-red-500 shrink-0 shadow-sm" />
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-foreground">Eliminado</p>
+                <p className="text-xs text-foreground/70">Já foi descartado</p>
+              </div>
+            </div>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

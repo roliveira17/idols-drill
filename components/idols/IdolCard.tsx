@@ -33,31 +33,65 @@ export function IdolCard({ idol }: IdolCardProps) {
 
   return (
     <Card className={cn(
-      'relative transition-all duration-300 border-2',
-      idol.status === 'eliminated' && 'opacity-60 border-red-200 dark:border-red-900',
-      idol.status === 'active' && 'border-green-200 dark:border-green-900 bg-green-50/50 dark:bg-green-950/20'
+      'relative transition-all duration-300',
+      // Ídolo Ativo - Destaque com borda verde e background
+      idol.status === 'active' && [
+        'border-2 border-green-500 shadow-lg shadow-green-500/20',
+        'bg-gradient-to-br from-green-500/10 via-background to-background',
+        'dark:from-green-500/20 dark:via-background dark:to-background'
+      ],
+      // Ídolo Eliminado - Opaco e vermelho
+      idol.status === 'eliminated' && [
+        'opacity-50 grayscale',
+        'border-2 border-red-500/50',
+        'bg-gradient-to-br from-red-500/5 via-background to-background'
+      ],
+      // Ídolo Pendente
+      idol.status === 'pending' && 'border border-border opacity-70'
     )}>
-      <CardHeader>
-        <div className="flex items-start justify-between gap-2">
-          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-            <span className="text-2xl sm:text-3xl">{IDOL_ICONS[idol.id]}</span>
-            <span className="text-foreground">{idol.name}</span>
-          </CardTitle>
-          <Badge className={cn('shrink-0', config.color)}>
+      <CardHeader className="space-y-3">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <span className="text-3xl sm:text-4xl shrink-0 drop-shadow-sm">
+              {IDOL_ICONS[idol.id]}
+            </span>
+            <CardTitle className="text-lg sm:text-xl font-bold text-foreground truncate">
+              {idol.name}
+            </CardTitle>
+          </div>
+          <Badge className={cn('shrink-0 shadow-sm', config.color)}>
             <Icon className="h-3 w-3 mr-1" />
             {config.label}
           </Badge>
         </div>
 
-        <CardDescription className="mt-2 text-sm leading-relaxed text-foreground/80 dark:text-foreground/70">
+        <p className="text-sm leading-relaxed text-foreground dark:text-foreground/90">
           {idol.description}
-        </CardDescription>
+        </p>
 
         {idol.status === 'eliminated' && idol.resistanceLevel && (
-          <div className="mt-3 pt-3 border-t border-border">
-            <p className="text-xs font-medium text-foreground/70">
-              Nível de resistência: <span className="text-primary font-bold">{idol.resistanceLevel}/5</span>
-            </p>
+          <div className="pt-3 border-t border-border/50">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium text-foreground/70">
+                Resistência:
+              </span>
+              <div className="flex items-center gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className={cn(
+                      'w-2 h-2 rounded-full transition-colors',
+                      i < (idol.resistanceLevel || 0)
+                        ? 'bg-primary'
+                        : 'bg-muted'
+                    )}
+                  />
+                ))}
+                <span className="ml-2 text-xs font-bold text-primary">
+                  {idol.resistanceLevel}/5
+                </span>
+              </div>
+            </div>
           </div>
         )}
       </CardHeader>
