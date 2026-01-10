@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+npm-debug.log
+
+# Environment
+.env.local
+.env*.local
+
+# Build outputs
+.next
+out
+
+# Development
+.vscode
+.idea
+
+# Documentation (não precisa no deploy)
+docs
+CLAUDE.md
+QUICK_START.md
+
+# Git
+.git
+.gitignore
