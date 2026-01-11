@@ -12,7 +12,7 @@ export interface Idol {
   status: IdolStatus
   eliminatedAt?: Date
   resistanceLevel?: 1 | 2 | 3 | 4 | 5
-  interactionCount: number // máx 2
+  interactionCount: number // máx 14
 }
 
 // Tipos de tom do assistente
