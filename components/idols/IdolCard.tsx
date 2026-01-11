@@ -54,7 +54,7 @@ export function IdolCard({ idol }: IdolCardProps) {
           <span className="text-4xl shrink-0">
             {IDOL_ICONS[idol.id]}
           </span>
-          <CardTitle className="text-xl font-bold text-card-foreground flex-1">
+          <CardTitle className="text-xl font-bold text-gray-900 dark:text-gray-50 flex-1">
             {idol.name}
           </CardTitle>
         </div>
@@ -68,30 +68,30 @@ export function IdolCard({ idol }: IdolCardProps) {
       <CardContent className="space-y-5 pt-2">
         {/* Seção 1: Essência */}
         <div className="space-y-2">
-          <h3 className="text-sm font-bold text-card-foreground uppercase tracking-wide">
+          <h3 className="text-sm font-bold text-gray-800 dark:text-gray-100 uppercase tracking-wide">
             O que é de verdade
           </h3>
-          <p className="text-sm leading-relaxed text-card-foreground/80">
+          <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
             {details.essence}
           </p>
         </div>
 
         {/* Seção 2: Na vida real */}
         <div className="space-y-2">
-          <h3 className="text-sm font-bold text-card-foreground uppercase tracking-wide">
+          <h3 className="text-sm font-bold text-gray-800 dark:text-gray-100 uppercase tracking-wide">
             Na vida real
           </h3>
-          <p className="text-sm leading-relaxed text-card-foreground/80">
+          <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
             {details.realLife}
           </p>
         </div>
 
         {/* Seção 3: Sinais de alerta */}
         <div className="space-y-2">
-          <h3 className="text-sm font-bold text-card-foreground uppercase tracking-wide">
+          <h3 className="text-sm font-bold text-gray-800 dark:text-gray-100 uppercase tracking-wide">
             Sinais de alerta
           </h3>
-          <p className="text-sm leading-relaxed text-card-foreground/80">
+          <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
             {details.alerts}
           </p>
         </div>
@@ -100,7 +100,7 @@ export function IdolCard({ idol }: IdolCardProps) {
         {idol.status === 'eliminated' && idol.resistanceLevel && (
           <div className="pt-4 border-t border-border">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-card-foreground/60 uppercase tracking-wide">
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Resistência
               </span>
               <div className="flex items-center gap-1">

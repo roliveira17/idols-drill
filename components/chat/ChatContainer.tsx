@@ -47,12 +47,12 @@ export function ChatContainer() {
         className="flex-1 overflow-y-auto px-3 py-4 sm:p-4 space-y-3 sm:space-y-4"
       >
         {state.chatHistory.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-center text-muted-foreground">
+          <div className="flex items-center justify-center h-full text-center">
             <div>
-              <p className="text-lg font-medium mb-2">
+              <p className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-100">
                 Bem-vindo ao Idol's Drill
               </p>
-              <p className="text-sm">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Comece a conversa para descobrir seu Ídolo Mestre
               </p>
             </div>
