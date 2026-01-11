@@ -77,7 +77,7 @@ export const LANGUAGE_LABELS: Record<Language, string> = {
 }
 
 // Regras de negócio
-export const MAX_INTERACTIONS_PER_IDOL = 2
+export const MAX_INTERACTIONS_PER_IDOL = 14
 export const TARGET_SESSION_DURATION_MINUTES = 5
 export const SLIDER_MIN = 1
 export const SLIDER_MAX = 5
