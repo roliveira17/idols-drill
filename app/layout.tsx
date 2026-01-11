@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "@/context/SessionContext";
 import { QueryProvider } from "@/components/providers/QueryProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
@@ -58,16 +59,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={poppins.variable}>
-        <ErrorBoundary>
-          <QueryProvider>
-            <SessionProvider>
-              {children}
-              <Toaster />
-            </SessionProvider>
-          </QueryProvider>
-        </ErrorBoundary>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ErrorBoundary>
+            <QueryProvider>
+              <SessionProvider>
+                {children}
+                <Toaster />
+              </SessionProvider>
+            </QueryProvider>
+          </ErrorBoundary>
+        </ThemeProvider>
       </body>
     </html>
   );

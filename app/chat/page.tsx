@@ -4,6 +4,7 @@ import { ChatContainer } from '@/components/chat/ChatContainer'
 import { ModeToggle } from '@/components/chat/ModeToggle'
 import { IdolsView } from '@/components/idols/IdolsView'
 import { ResistanceSlider } from '@/components/idols/ResistanceSlider'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { useSession } from '@/context/SessionContext'
 import { useIdolElimination } from '@/hooks/useIdolElimination'
 import { ArrowLeft } from 'lucide-react'
@@ -38,21 +39,26 @@ export default function ChatPage() {
             </div>
           </div>
 
-          {/* Indicador de progresso */}
-          <div className="flex gap-1 shrink-0">
-            {state.idols.map((idol) => (
-              <div
-                key={idol.id}
-                className={`h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full transition-colors ${
-                  idol.status === 'eliminated'
-                    ? 'bg-red-500'
-                    : idol.status === 'active'
-                    ? 'bg-green-500'
-                    : 'bg-gray-300'
-                }`}
-                title={idol.name}
-              />
-            ))}
+          <div className="flex items-center gap-2">
+            {/* Indicador de progresso */}
+            <div className="flex gap-1 shrink-0">
+              {state.idols.map((idol) => (
+                <div
+                  key={idol.id}
+                  className={`h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full transition-colors ${
+                    idol.status === 'eliminated'
+                      ? 'bg-red-500'
+                      : idol.status === 'active'
+                      ? 'bg-green-500'
+                      : 'bg-gray-300'
+                  }`}
+                  title={idol.name}
+                />
+              ))}
+            </div>
+
+            {/* Theme Toggle */}
+            <ThemeToggle />
           </div>
         </div>
       </header>
