@@ -84,3 +84,37 @@ export const IDOL_ICONS: Record<IdolType, string> = {
   pleasure: '🎭',
   fame: '⭐'
 }
+
+export const IDOL_ACCENT_COLORS: Record<IdolType, string> = {
+  money: 'border-t-green-500',
+  power: 'border-t-violet-500',
+  pleasure: 'border-t-pink-500',
+  fame: 'border-t-amber-500'
+}
+
+export const IDOL_DETAILS: Record<IdolType, {
+  essence: string
+  realLife: string
+  alerts: string
+}> = {
+  money: {
+    essence: 'Não é sobre consumo. É sobre segurança psicológica absoluta: a crença de que, se eu tiver o suficiente, nada pode me atingir.',
+    realLife: 'Dificuldade em relaxar mesmo ganhando bem; decisões sempre filtradas por "e se der errado?"; apego excessivo a reservas, planos B, C e D; desconforto em depender de alguém.',
+    alerts: 'Ansiedade constante com perdas pequenas; sensação de que nunca é suficiente; alívio só temporário quando o número aumenta.'
+  },
+  power: {
+    essence: 'Não é mandar. É controle do ambiente para não se sentir vulnerável. Preferir errar decidindo do que acertar obedecendo.',
+    realLife: 'Incômodo com lideranças ruins; necessidade de ter a palavra final; irritação quando alguém decide por você mesmo que decida bem; dificuldade em simplesmente executar.',
+    alerts: 'Raiva desproporcional quando perde autonomia; sensação de sufocamento em hierarquias; confusão entre responsabilidade e valor pessoal.'
+  },
+  pleasure: {
+    essence: 'Não é diversão. É fuga do desconforto e da frustração. A vida só é tolerável quando está agradável.',
+    realLife: 'Uso frequente de comida, séries, redes, sexo, compras ou dopaminas "leves" para regular humor; aversão a rotinas secas; procrastinação mascarada de autocuidado.',
+    alerts: 'Impaciência com esforço prolongado; vazio após o prazer; dificuldade em sustentar escolhas que doem agora mas pagam depois.'
+  },
+  fame: {
+    essence: 'Não é celebridade. É validação externa: existir é ser visto, respeitado ou admirado. O medo central é ser irrelevante.',
+    realLife: 'Busca por reconhecimento no trabalho; sensibilidade excessiva a críticas; comparação constante; necessidade de deixar marca, ser lembrado, "não passar despercebido".',
+    alerts: 'Oscilação de autoestima conforme feedback; medo de ser comum; sensação de fracasso mesmo com vida objetivamente boa.'
+  }
+}
