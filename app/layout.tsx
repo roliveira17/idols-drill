@@ -3,7 +3,6 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "@/context/SessionContext";
 import { QueryProvider } from "@/components/providers/QueryProvider";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
@@ -46,10 +45,7 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 5,
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#722f37" },
-    { media: "(prefers-color-scheme: dark)", color: "#8b444e" },
-  ],
+  themeColor: "#722f37",
   manifest: "/manifest.json",
 };
 
@@ -59,23 +55,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="pt-BR">
       <body className={poppins.variable}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ErrorBoundary>
-            <QueryProvider>
-              <SessionProvider>
-                {children}
-                <Toaster />
-              </SessionProvider>
-            </QueryProvider>
-          </ErrorBoundary>
-        </ThemeProvider>
+        <ErrorBoundary>
+          <QueryProvider>
+            <SessionProvider>
+              {children}
+              <Toaster />
+            </SessionProvider>
+          </QueryProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

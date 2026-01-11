@@ -3,7 +3,6 @@
 import { ChatContainer } from '@/components/chat/ChatContainer'
 import { ModeToggle } from '@/components/chat/ModeToggle'
 import { ResistanceSlider } from '@/components/idols/ResistanceSlider'
-import { ThemeToggle } from '@/components/ThemeToggle'
 import { useSession } from '@/context/SessionContext'
 import { useIdolElimination } from '@/hooks/useIdolElimination'
 import { ArrowLeft } from 'lucide-react'
@@ -55,9 +54,6 @@ export default function ChatPage() {
                 />
               ))}
             </div>
-
-            {/* Theme Toggle */}
-            <ThemeToggle />
           </div>
         </div>
       </header>
