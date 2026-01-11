@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { groq, DEFAULT_MODEL } from '@/lib/groq/client'
+import { groq, DEFAULT_MODEL as GROQ_MODEL } from '@/lib/groq/client'
+import { getOpenAI, OPENAI_MODEL } from '@/lib/openai/client'
 import { getSystemPrompt, getSliderResponsePrompt } from '@/lib/groq/prompts'
 import { Language, ToneType, IdolType, IdolStatus } from '@/types'
 
@@ -40,19 +41,74 @@ export async function POST(request: NextRequest) {
       finalSystemPrompt = `${systemPrompt}\n\n${sliderInstruction}`
     }
 
-    // Chamar Groq API
-    const completion = await groq.chat.completions.create({
-      model: DEFAULT_MODEL,
-      messages: [
-        { role: 'system', content: finalSystemPrompt },
-        ...messages
-      ],
-      temperature: 0.7,
-      max_tokens: 500,
-      top_p: 0.9
-    })
+    let response: string
+    let modelUsed: string
 
-    const response = completion.choices[0]?.message?.content
+    // TENTATIVA 1: OpenAI (Primary)
+    try {
+      console.log('[AI] Tentando OpenAI...')
+
+      const openai = getOpenAI()
+      const completion = await openai.chat.completions.create({
+        model: OPENAI_MODEL,
+        messages: [
+          { role: 'system', content: finalSystemPrompt },
+          ...messages
+        ],
+        temperature: 0.7,
+        max_tokens: 500,
+        top_p: 0.9
+      })
+
+      response = completion.choices[0]?.message?.content || ''
+      modelUsed = `openai:${OPENAI_MODEL}`
+      console.log('[AI] ✓ OpenAI respondeu com sucesso')
+
+    } catch (openaiError) {
+      // Log do erro OpenAI
+      console.error('[AI] ✗ OpenAI falhou:', openaiError)
+
+      // TENTATIVA 2: Groq (Fallback)
+      try {
+        console.log('[AI] Tentando Groq (fallback)...')
+
+        const completion = await groq.chat.completions.create({
+          model: GROQ_MODEL,
+          messages: [
+            { role: 'system', content: finalSystemPrompt },
+            ...messages
+          ],
+          temperature: 0.7,
+          max_tokens: 500,
+          top_p: 0.9
+        })
+
+        response = completion.choices[0]?.message?.content || ''
+        modelUsed = `groq:${GROQ_MODEL} (fallback)`
+        console.log('[AI] ✓ Groq respondeu com sucesso (fallback)')
+
+      } catch (groqError) {
+        // Ambos falharam
+        console.error('[AI] ✗ Groq também falhou:', groqError)
+
+        // Retornar erro apropriado
+        const isRateLimitError =
+          (openaiError as any)?.status === 429 ||
+          (groqError as any)?.status === 429
+
+        if (isRateLimitError) {
+          return NextResponse.json(
+            { error: 'Rate limit excedido em ambos os provedores. Tente novamente em alguns segundos.' },
+            { status: 429 }
+          )
+        }
+
+        return NextResponse.json(
+          { error: 'Erro ao processar mensagem. Ambos os provedores de IA falharam.' },
+          { status: 500 }
+        )
+      }
+    }
 
     if (!response) {
       throw new Error('Resposta vazia da IA')
@@ -60,7 +116,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       response,
-      model: DEFAULT_MODEL
+      model: modelUsed
     })
 
   } catch (error: any) {
