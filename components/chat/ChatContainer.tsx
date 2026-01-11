@@ -72,12 +72,10 @@ export function ChatContainer() {
       <ChatInput
         onSend={handleSend}
         isLoading={isPending}
-        disabled={state.viewMode === 'idols' || state.isAwaitingSlider}
+        disabled={state.isAwaitingSlider}
         placeholder={
           state.isAwaitingSlider
             ? 'Aguardando resposta do slider...'
-            : state.viewMode === 'idols'
-            ? 'Feche o modo Ídolos para continuar...'
             : 'Digite sua mensagem...'
         }
       />

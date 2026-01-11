@@ -2,7 +2,6 @@
 
 import { ChatContainer } from '@/components/chat/ChatContainer'
 import { ModeToggle } from '@/components/chat/ModeToggle'
-import { IdolsView } from '@/components/idols/IdolsView'
 import { ResistanceSlider } from '@/components/idols/ResistanceSlider'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { useSession } from '@/context/SessionContext'
@@ -72,9 +71,6 @@ export default function ChatPage() {
 
       {/* Mode Toggle (fixed bottom) */}
       <ModeToggle />
-
-      {/* Idols View Modal */}
-      <IdolsView />
 
       {/* Resistance Slider Modal */}
       <ResistanceSlider
