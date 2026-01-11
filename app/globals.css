@@ -101,8 +101,8 @@
   --foreground: oklch(0.9699 0.0013 106.4238);
 
   /* === CARD === */
-  --card: oklch(0.2685 0.0063 34.2976);
-  --card-foreground: oklch(0.9699 0.0013 106.4238);
+  --card: oklch(0.32 0.008 34);
+  --card-foreground: oklch(0.98 0.002 106);
 
   /* === POPOVER / DROPDOWN / TOOLTIP === */
   --popover: oklch(0.2685 0.0063 34.2976);
