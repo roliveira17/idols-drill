@@ -11,25 +11,28 @@ export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center p-3 sm:p-4 bg-gradient-to-br from-background via-background to-muted">
       <Card className="max-w-2xl w-full p-5 sm:p-8 shadow-2xl">
-        {/* Header */}
-        <div className="text-center mb-6 sm:mb-8">
-          <h1 className="text-3xl sm:text-5xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Idol's Drill
+        {/* Hero */}
+        <div className="text-center mb-6 sm:mb-8 space-y-3 sm:space-y-5">
+          {/* Headline */}
+          <h1 className="text-3xl sm:text-5xl font-bold leading-tight bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            Algo sempre organiza suas escolhas.
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground">
-            Descubra seu Ídolo Mestre em ~5 minutos
-          </p>
-        </div>
 
-        {/* Descrição */}
-        <div className="mb-6 sm:mb-8 space-y-2 sm:space-y-3 text-center">
-          <p className="text-sm sm:text-base leading-relaxed">
-            Um exercício introspectivo que usa IA conversacional para identificar
-            qual dos <strong>4 ídolos</strong> tem maior influência em sua vida.
+          {/* Subheadline */}
+          <p className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            Este exercício ajuda a identificar qual força você prioriza quando
+            interesses entram em conflito e escolhas ficam desconfortáveis.
           </p>
-          <p className="text-xs sm:text-sm text-muted-foreground">
-            Baseado no pensamento de São Tomás de Aquino sobre bens finitos
-            que não podem preencher nossos desejos infinitos.
+
+          {/* Contexto (tipografia menor, discreta) */}
+          <p className="text-xs sm:text-sm text-muted-foreground/70 max-w-xl mx-auto">
+            Inspirado em São Tomás de Aquino e na ideia de que desejos infinitos
+            buscam, muitas vezes, fins limitados.
+          </p>
+
+          {/* Frase âncora (discreta) */}
+          <p className="text-sm text-muted-foreground/60 italic pt-2">
+            O que pesa mais costuma decidir primeiro.
           </p>
         </div>
 
