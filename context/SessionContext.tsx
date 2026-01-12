@@ -146,6 +146,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
             }
           : idol
       ),
+      currentIdolDiscussion: undefined,
       isAwaitingSlider: false
     }))
   }

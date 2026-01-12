@@ -5,6 +5,7 @@ import { useSession } from '@/context/SessionContext'
 import { ChatMessage } from './ChatMessage'
 import { ChatInput } from './ChatInput'
 import { ChatMessageSkeleton } from './ChatMessageSkeleton'
+import { IdolSelector } from './IdolSelector'
 import { useSendMessage } from '@/hooks/useSendMessage'
 import { toast } from 'sonner'
 
@@ -15,6 +16,9 @@ export function ChatContainer() {
   const messagesContainerRef = useRef<HTMLDivElement>(null)
 
   const handleSend = (message: string) => {
+    // Guard: prevent sending if no idol is selected
+    if (!state.currentIdolDiscussion) return
+
     // Adiciona mensagem do usuário
     addMessage({ role: 'user', content: message })
 
@@ -38,6 +42,26 @@ export function ChatContainer() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [state.chatHistory])
+
+  // Determine if user can send messages
+  const canSendMessage = state.currentIdolDiscussion !== undefined
+
+  // Get placeholder based on state and language
+  const getPlaceholder = () => {
+    if (state.isAwaitingSlider) {
+      return state.language === 'pt-BR'
+        ? 'Aguardando resposta do slider...'
+        : 'Awaiting slider response...'
+    }
+    if (!canSendMessage) {
+      return state.language === 'pt-BR'
+        ? 'Selecione um ídolo acima para começar...'
+        : 'Select an idol above to start...'
+    }
+    return state.language === 'pt-BR'
+      ? 'Digite sua mensagem...'
+      : 'Type your message...'
+  }
 
   return (
     <div className="flex flex-col h-full">
@@ -68,16 +92,15 @@ export function ChatContainer() {
         )}
       </div>
 
+      {/* Idol Selector */}
+      <IdolSelector />
+
       {/* Input */}
       <ChatInput
         onSend={handleSend}
         isLoading={isPending}
-        disabled={state.isAwaitingSlider}
-        placeholder={
-          state.isAwaitingSlider
-            ? 'Aguardando resposta do slider...'
-            : 'Digite sua mensagem...'
-        }
+        disabled={state.isAwaitingSlider || !canSendMessage}
+        placeholder={getPlaceholder()}
       />
     </div>
   )
